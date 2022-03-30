@@ -1,7 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../create_pet_profile_new/create_pet_profile_new_widget.dart';
-import '../edit_dog_profile/edit_dog_profile_widget.dart';
+import '../edit_pet_profile/edit_pet_profile_widget.dart';
 import '../edit_settings/edit_settings_widget.dart';
 import '../petbook/petbook_icon_button.dart';
 import '../petbook/petbook_theme.dart';
@@ -398,8 +398,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              EditDogProfileWidget(
-                                                            dogProfile:
+                                                              EditPetProfileWidget(
+                                                            petProfile:
                                                                 columnPetsRecord,
                                                           ),
                                                         ),

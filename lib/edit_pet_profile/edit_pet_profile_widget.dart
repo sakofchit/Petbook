@@ -10,19 +10,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EditDogProfileWidget extends StatefulWidget {
-  const EditDogProfileWidget({
+class EditPetProfileWidget extends StatefulWidget {
+  const EditPetProfileWidget({
     Key key,
-    this.dogProfile,
+    this.petProfile,
   }) : super(key: key);
 
-  final PetsRecord dogProfile;
+  final PetsRecord petProfile;
 
   @override
-  _EditDogProfileWidgetState createState() => _EditDogProfileWidgetState();
+  _EditPetProfileWidgetState createState() => _EditPetProfileWidgetState();
 }
 
-class _EditDogProfileWidgetState extends State<EditDogProfileWidget> {
+class _EditPetProfileWidgetState extends State<EditPetProfileWidget> {
   String uploadedFileUrl = '';
   TextEditingController petNameController;
   TextEditingController dogBreedController;
@@ -32,15 +32,15 @@ class _EditDogProfileWidgetState extends State<EditDogProfileWidget> {
   @override
   void initState() {
     super.initState();
-    petAgeController = TextEditingController(text: widget.dogProfile.petAge);
-    dogBreedController = TextEditingController(text: widget.dogProfile.petType);
-    petNameController = TextEditingController(text: widget.dogProfile.petName);
+    petAgeController = TextEditingController(text: widget.petProfile.petAge);
+    dogBreedController = TextEditingController(text: widget.petProfile.petType);
+    petNameController = TextEditingController(text: widget.petProfile.petName);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PetsRecord>(
-      stream: PetsRecord.getDocument(widget.dogProfile.reference),
+      stream: PetsRecord.getDocument(widget.petProfile.reference),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -54,7 +54,7 @@ class _EditDogProfileWidgetState extends State<EditDogProfileWidget> {
             ),
           );
         }
-        final editDogProfilePetsRecord = snapshot.data;
+        final editPetProfilePetsRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -313,7 +313,7 @@ class _EditDogProfileWidgetState extends State<EditDogProfileWidget> {
                                     petType: dogBreedController.text,
                                     petAge: petAgeController.text,
                                   );
-                                  await widget.dogProfile.reference
+                                  await widget.petProfile.reference
                                       .update(dogsUpdateData);
                                   Navigator.pop(context);
                                 },
