@@ -84,14 +84,6 @@
 		<data>
 		YaZ3V+0+ASndzNpun6DfJV7pKWI=
 		</data>
-		<key>flutter_assets/assets/pdfs/favicon.png</key>
-		<data>
-		YaZ3V+0+ASndzNpun6DfJV7pKWI=
-		</data>
-		<key>flutter_assets/assets/rive_animations/favicon.png</key>
-		<data>
-		YaZ3V+0+ASndzNpun6DfJV7pKWI=
-		</data>
 		<key>flutter_assets/assets/videos/favicon.png</key>
 		<data>
 		YaZ3V+0+ASndzNpun6DfJV7pKWI=
@@ -106,7 +98,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		8dURmTZEIfTND6QYIdt+U0Ipwto=
+		yvr5NvP5Eo6RgbT+gb+rqc2Ibbo=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -352,28 +344,6 @@
 			erJSX0uGtl0+THA1ihfloar29Df5nLzARtrXPVm7kBU=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/pdfs/favicon.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			YaZ3V+0+ASndzNpun6DfJV7pKWI=
-			</data>
-			<key>hash2</key>
-			<data>
-			erJSX0uGtl0+THA1ihfloar29Df5nLzARtrXPVm7kBU=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/rive_animations/favicon.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			YaZ3V+0+ASndzNpun6DfJV7pKWI=
-			</data>
-			<key>hash2</key>
-			<data>
-			erJSX0uGtl0+THA1ihfloar29Df5nLzARtrXPVm7kBU=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/videos/favicon.png</key>
 		<dict>
 			<key>hash</key>
@@ -411,11 +381,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8dURmTZEIfTND6QYIdt+U0Ipwto=
+			yvr5NvP5Eo6RgbT+gb+rqc2Ibbo=
 			</data>
 			<key>hash2</key>
 			<data>
-			V/VSYNEO15yuzLKgos109Pywgua4M4F47bu+QB2N5Lk=
+			ZusiGJ4MUzuEJ/KTNXxXzZPGArM9fcEJYa1/CZPDHcE=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

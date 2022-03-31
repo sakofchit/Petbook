@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
@@ -256,6 +258,7 @@ class _EditPetProfileWidgetState extends State<EditPetProfileWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   controller: petAgeController,
                                   obscureText: false,
                                   decoration: InputDecoration(

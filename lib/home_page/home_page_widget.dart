@@ -172,7 +172,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ],
                 ),
-                
                 Expanded(
                   child: DefaultTabController(
                     length: 2,
@@ -253,7 +252,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                          
                                       );
                                     }
-                                    return Column(
+                                    return SingleChildScrollView(
+                                      child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
                                           columnPetsRecordList.length,
@@ -263,13 +263,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 12, 0, 0),
+                                                  0, 12, 0, 12),
                                           child: Container(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.96,
-                                            height: 100,
+                                                0.9,
+                                            height: 400,
                                             decoration: BoxDecoration(
                                               color:
                                                   PetbookTheme.of(context)
@@ -284,72 +284,58 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
-                                            child: Row(
+                                            child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 ClipRRect(
-                                                  borderRadius:
+                                                  /*borderRadius:
                                                       BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(8),
                                                     bottomRight:
-                                                        Radius.circular(0),
+                                                        Radius.circular(8),
                                                     topLeft: Radius.circular(8),
                                                     topRight:
-                                                        Radius.circular(0),
-                                                  ),
-                                                  child: CachedNetworkImage(
+                                                        Radius.circular(8),
+                                                  ),*/
+                                                  child: Padding(
+                                                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                                    child: CachedNetworkImage(
                                                     imageUrl:
                                                         valueOrDefault<String>(
                                                       columnPetsRecord.petPhoto,
-                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/sample-app-social-app-tx2kqp/assets/gu4akoa3hju1/victor-grabarczyk-N04FIfHhv_k-unsplash.jpg',
+                                                      'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
                                                     ),
-                                                    width: 100,
-                                                    height: 100,
+                                                    width: 300,
+                                                    height: 300,
                                                     fit: BoxFit.cover,
                                                   ),
+                                                  )
                                                 ),
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                12, 0, 0, 0),
+                                                                20, 0, 0, 0),
                                                     child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(
-                                                          columnPetsRecord
-                                                              .petName,
-                                                          style: PetbookTheme
-                                                                  .of(context)
-                                                              .title3,
+                                                          columnPetsRecord.petName,
+                                                          style: PetbookTheme.of(context).title3,
                                                         ),
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          0,
-                                                                          0),
+                                                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                                               child: Text(
-                                                                columnPetsRecord
-                                                                    .petType,
-                                                                style: PetbookTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
+                                                                columnPetsRecord.petType,
+                                                                style: PetbookTheme.of(context).bodyText2,
                                                               ),
                                                             ),
                                                             Padding(
@@ -365,53 +351,54 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     .petAge,
                                                                 style: PetbookTheme.of(
                                                                         context)
-                                                                    .bodyText1,
+                                                                    .bodyText2,
                                                               ),
                                                             ),
+                                                           /* Padding(
+                                                              padding: EdgeInsetsDirectional
+                                                                  .fromSTEB(175, 0, 0, 0),
+                                                              child: PetbookIconButton(
+                                                                borderColor:
+                                                                    PetbookTheme.of(
+                                                                            context)
+                                                                        .gray200,
+                                                                borderRadius: 30,
+                                                                borderWidth: 2,
+                                                                buttonSize: 44,
+                                                                icon: Icon(
+                                                                  Icons.edit,
+                                                                  color: PetbookTheme.of(
+                                                                            context)
+                                                                        .gray200,
+                                                                  size: 24,
+                                                                ),
+                                                                onPressed: () async {
+                                                                  await Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          EditPetProfileWidget(
+                                                                        petProfile:
+                                                                            columnPetsRecord,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),*/
                                                           ],
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 12, 0),
-                                                  child: PetbookIconButton(
-                                                    borderColor:
-                                                        PetbookTheme.of(
-                                                                context)
-                                                            .gray200,
-                                                    borderRadius: 30,
-                                                    borderWidth: 2,
-                                                    buttonSize: 44,
-                                                    icon: Icon(
-                                                      Icons.edit_outlined,
-                                                      color:
-                                                          PetbookTheme.of(
-                                                                  context)
-                                                              .grayIcon,
-                                                      size: 24,
-                                                    ),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              EditPetProfileWidget(
-                                                            petProfile:
-                                                                columnPetsRecord,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
+                                                
                                               ],
                                             ),
                                           ),
                                         );
                                       }),
+                                      )
                                     );
                                   },
                                 ),

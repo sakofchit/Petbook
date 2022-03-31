@@ -67,7 +67,7 @@ abstract class PetbookTheme {
 
 class LightModeTheme extends PetbookTheme {
   Color primaryColor = const Color(0xFF3A405A);
-  Color secondaryColor = const Color(0xFF84A59D);
+  Color secondaryColor = Colors.white; //const Color(0xFF84A59D);
   Color tertiaryColor = const Color(0xFFF7EDE2);
   Color alternate = const Color(0x00000000);
   Color primaryBackground = const Color(0x00000000);

@@ -225,7 +225,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     alignment: AlignmentDirectional(0.9, 0),
                                     child: Icon(
                                       Icons.arrow_forward_ios,
-                                      color: Color(0xFF95A1AC),
+                                      color: Color.fromARGB(255, 83, 83, 83),
                                       size: 18,
                                     ),
                                   ),

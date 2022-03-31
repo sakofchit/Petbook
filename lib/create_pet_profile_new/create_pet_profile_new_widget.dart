@@ -238,6 +238,7 @@ class _CreatePetProfileNewWidgetState extends State<CreatePetProfileNewWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: TextFormField(
+                            keyboardType: TextInputType.number,
                             controller: petAgeController,
                             obscureText: false,
                             decoration: InputDecoration(
