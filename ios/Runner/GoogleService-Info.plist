@@ -3,36 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>513050052130-1225haka5laprbvo3ac5vc5oritbhg4i.apps.googleusercontent.com</string>
+	<string>228922545435-d1m2a67g712a9vhvjtmk2qv7p4kqvus1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.513050052130-1225haka5laprbvo3ac5vc5oritbhg4i</string>
+	<string>com.googleusercontent.apps.228922545435-d1m2a67g712a9vhvjtmk2qv7p4kqvus1</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>513050052130-o132eudtlqdoq23aad0a36d6o5q213sm.apps.googleusercontent.com</string>
+	<string>228922545435-80o9h44121srjdrpcgv1mrp6rvk4upcj.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA66Xbg6PbNHKyxcEExumKs4b-EYDPth-A</string>
+	<string>AIzaSyDyEseMbXqFZMHrecbhg3z1uUVvqF0aeVQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>513050052130</string>
+	<string>228922545435</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.group1.petbook</string>
 	<key>PROJECT_ID</key>
-	<string>group1-3548e</string>
+	<string>snout-371aa</string>
 	<key>STORAGE_BUCKET</key>
-	<string>group1-3548e.appspot.com</string>
+	<string>snout-371aa.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:513050052130:ios:cbfe7b5fdceb1d1ed7ac7b</string>
-	<key>DATABASE_URL</key>
-	<string>https://group1-3548e-default-rtdb.firebaseio.com</string>
+	<string>1:228922545435:ios:4337a18f414c70d1ba6fbe</string>
 </dict>
 </plist>

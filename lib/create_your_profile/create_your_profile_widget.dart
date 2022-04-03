@@ -21,7 +21,7 @@ class CreateYourProfileWidget extends StatefulWidget {
 class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
   String uploadedFileUrl = '';
   TextEditingController yourNameController;
-  TextEditingController userNameController;
+  TextEditingController phoneNumberController;
   TextEditingController bioController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -29,7 +29,7 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
   void initState() {
     super.initState();
     bioController = TextEditingController();
-    userNameController = TextEditingController(text: '@');
+    phoneNumberController = TextEditingController(text: '@');
     yourNameController = TextEditingController();
   }
 
@@ -200,10 +200,11 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: TextFormField(
-                              controller: userNameController,
+                              keyboardType: TextInputType.phone,
+                              controller: phoneNumberController,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: 'UserName',
+                                labelText: 'Phone Number',
                                 labelStyle:
                                     PetbookTheme.of(context).bodyText1,
                                 enabledBorder: UnderlineInputBorder(
@@ -244,17 +245,18 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: TextFormField(
+                              keyboardType: TextInputType.streetAddress,
                               controller: bioController,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelStyle:
                                     PetbookTheme.of(context).bodyText1,
-                                hintText: 'Your Bio',
+                                hintText: 'Your Address',
                                 hintStyle:
                                     PetbookTheme.of(context).bodyText1,
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: PetbookTheme.of(context).gray200,
+                                    color: Color.fromARGB(255, 56, 56, 56),
                                     width: 1,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -298,7 +300,7 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                         onPressed: () async {
                           final usersUpdateData = createUsersRecordData(
                             displayName: yourNameController.text,
-                            userName: userNameController.text,
+                            phoneNumber: phoneNumberController.text,
                             photoUrl: uploadedFileUrl,
                             bio: bioController.text,
                           );

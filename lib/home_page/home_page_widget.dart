@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../create_pet_profile_new/create_pet_profile_new_widget.dart';
 import '../edit_pet_profile/edit_pet_profile_widget.dart';
-import '../edit_settings/edit_settings_widget.dart';
 import '../petbook/petbook_icon_button.dart';
 import '../petbook/petbook_theme.dart';
 import '../petbook/petbook_toggle_icon.dart';
@@ -13,6 +12,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+
+import '../view_pet_profile/view_pet_profile.dart';
 
 
 class HomePageWidget extends StatefulWidget {
@@ -260,7 +261,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           (columnIndex) {
                                         final columnPetsRecord =
                                             columnPetsRecordList[columnIndex];
-                                        return Padding(
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ViewPetProfileWidget(
+                                                  petProfile:
+                                                      columnPetsRecord,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 12, 0, 12),
@@ -396,7 +410,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               ],
                                             ),
                                           ),
-                                        );
+                                        ));
                                       }),
                                       )
                                     );
