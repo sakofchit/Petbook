@@ -291,6 +291,7 @@ class _CreatePetProfileNewWidgetState extends State<CreatePetProfileNewWidget> {
                           petName: petNameController.text,
                           petType: dogBreedController.text,
                           petAge: petAgeController.text,
+                          
                         );
                         await PetsRecord.collection.doc().set(dogsCreateData);
                         Navigator.pop(context);

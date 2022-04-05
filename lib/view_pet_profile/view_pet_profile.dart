@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
+import 'package:petbook/home_page/home_page_widget.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -95,12 +96,103 @@ class _ViewPetProfileWidgetState extends State<ViewPetProfileWidget> {
                 padding: EdgeInsets.only(right: 0),
                 child: PetbookIconButton(
                 icon: Icon(
-                  Icons.qr_code_scanner_rounded,
-                  color: PetbookTheme.of(context).primaryColor,
-                  size: 30,
+                    Icons.delete_rounded,
+                    color: Color.fromARGB(255, 193, 91, 75),
+                    size: 30,
+                  ),
+                  onPressed: () async {
+                    showModalBottomSheet<MediaSource>(
+                      context: context,
+                      backgroundColor: PetbookTheme.of(context).tertiaryColor,
+                      builder: (context) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                              child: ListTile(
+                                title: Text(
+                                  'Are you sure you want to delete this profile?',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                  )
+                                ),
+                                tileColor: PetbookTheme.of(context).tertiaryColor,
+                                dense: false,
+                              ),
+                            ),
+                            
+                            const Divider(),
+                            ListTile(
+                                title: Text(
+                                  'Yes',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: PetbookTheme.of(context).primaryColor,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  )
+                                ),
+                                tileColor: PetbookTheme.of(context).tertiaryColor,
+                                dense: false,
+                                onTap: () async {
+                                  await widget.petProfile.reference.delete();
+                                  final snackbar = SnackBar(
+                                    content: const Text('Successfully Deleted Profile')
+                                  );
+
+                                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                  Navigator.pop(context);
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.leftToRight,
+                                      duration: Duration(milliseconds: 250),
+                                      reverseDuration: Duration(milliseconds: 250),
+                                      child: HomePageWidget(),
+                                    ),
+                                  );
+                                }
+                            ),
+                            const Divider(),
+                            ListTile(
+                                title: Text(
+                                  'Cancel',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 155, 71, 65),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                  )
+                                ),
+                                tileColor: PetbookTheme.of(context).tertiaryColor,
+                                dense: false,
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                }
+                            ),
+                            const Divider(),
+                            const SizedBox(height: 10),
+                          ],
+                        );
+                      });
+                    
+                  },
                 ),
-                onPressed: () async { },
               ),
+              Padding(
+                padding: EdgeInsets.only(right: 0),
+                child: PetbookIconButton(
+                icon: Icon(
+                    Icons.qr_code_scanner_rounded,
+                    color: PetbookTheme.of(context).primaryColor,
+                    size: 30,
+                  ),
+                  onPressed: () async { },
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 10),
@@ -119,6 +211,13 @@ class _ViewPetProfileWidgetState extends State<ViewPetProfileWidget> {
                     );
                     await widget.petProfile.reference
                         .update(dogsUpdateData);
+                    
+                    final snackbar = SnackBar(
+                      content: const Text('Saved profile changes')
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
                   },
               ),
               )
@@ -291,7 +390,10 @@ class _ViewPetProfileWidgetState extends State<ViewPetProfileWidget> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        indent: 30,
+                        endIndent: 30,
+                      ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                         child: Row(
@@ -306,7 +408,7 @@ class _ViewPetProfileWidgetState extends State<ViewPetProfileWidget> {
                                     padding:
                                         EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                                     child: Text(
-                                      'Owner:' + valueOrDefault<String>(
+                                      'Owner: ' + valueOrDefault<String>(
                                         profilePageUsersRecord.displayName,
                                         '',
                                       ),

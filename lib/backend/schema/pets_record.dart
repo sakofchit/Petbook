@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
+import 'package:http/http.dart' as http;
 
 part 'pets_record.g.dart';
 
@@ -28,6 +30,12 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   String get petBio;
 
   @nullable
+  String get petId;
+
+  @nullable
+  String get petQr;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -36,7 +44,9 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
     ..petName = ''
     ..petType = ''
     ..petAge = ''
-    ..petBio = '';
+    ..petBio = ''
+    ..petId = ''
+    ..petQr = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('pets');
@@ -58,6 +68,8 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
           {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
+var docId = FirebaseFirestore.instance.collection('pets').doc(); 
+
 Map<String, dynamic> createPetsRecordData({
   DocumentReference userAssociation,
   String petPhoto,
@@ -65,6 +77,8 @@ Map<String, dynamic> createPetsRecordData({
   String petType,
   String petAge,
   String petBio,
+  String petId,
+  String petQr,
 }) =>
     serializers.toFirestore(
         PetsRecord.serializer,
@@ -74,4 +88,6 @@ Map<String, dynamic> createPetsRecordData({
           ..petName = petName
           ..petType = petType
           ..petAge = petAge
-          ..petBio = petBio));
+          ..petBio = petBio
+          ..petId = petId
+          ..petQr = petQr));

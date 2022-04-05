@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
@@ -9,6 +14,7 @@ import '../petbook/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class CreatePetProfileWidget extends StatefulWidget {
   const CreatePetProfileWidget({Key key}) : super(key: key);
@@ -19,6 +25,7 @@ class CreatePetProfileWidget extends StatefulWidget {
 
 class _CreatePetProfileWidgetState extends State<CreatePetProfileWidget> {
   String uploadedFileUrl = '';
+  String qrCodeUrl = '';
   TextEditingController petNameController;
   TextEditingController dogBreedController;
   TextEditingController petAgeController;
@@ -341,6 +348,7 @@ class _CreatePetProfileWidgetState extends State<CreatePetProfileWidget> {
                                 petName: petNameController.text,
                                 petType: dogBreedController.text,
                                 petAge: petAgeController.text,
+                                petId: FirebaseFirestore.instance.collection('pets').doc().toString(),
                               );
                               await PetsRecord.collection
                                   .doc()

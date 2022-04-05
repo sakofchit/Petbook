@@ -62,6 +62,20 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.petId;
+    if (value != null) {
+      result
+        ..add('petId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.petQr;
+    if (value != null) {
+      result
+        ..add('petQr')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -110,6 +124,14 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
           result.petBio = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'petId':
+          result.petId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'petQr':
+          result.petQr = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -137,6 +159,10 @@ class _$PetsRecord extends PetsRecord {
   @override
   final String petBio;
   @override
+  final String petId;
+  @override
+  final String petQr;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$PetsRecord([void Function(PetsRecordBuilder) updates]) =>
@@ -149,6 +175,8 @@ class _$PetsRecord extends PetsRecord {
       this.petType,
       this.petAge,
       this.petBio,
+      this.petId,
+      this.petQr,
       this.reference})
       : super._();
 
@@ -169,6 +197,8 @@ class _$PetsRecord extends PetsRecord {
         petType == other.petType &&
         petAge == other.petAge &&
         petBio == other.petBio &&
+        petId == other.petId &&
+        petQr == other.petQr &&
         reference == other.reference;
   }
 
@@ -179,12 +209,16 @@ class _$PetsRecord extends PetsRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc(0, userAssociation.hashCode),
-                            petPhoto.hashCode),
-                        petName.hashCode),
-                    petType.hashCode),
-                petAge.hashCode),
-            petBio.hashCode),
+                        $jc(
+                            $jc(
+                                $jc($jc(0, userAssociation.hashCode),
+                                    petPhoto.hashCode),
+                                petName.hashCode),
+                            petType.hashCode),
+                        petAge.hashCode),
+                    petBio.hashCode),
+                petId.hashCode),
+            petQr.hashCode),
         reference.hashCode));
   }
 
@@ -197,6 +231,8 @@ class _$PetsRecord extends PetsRecord {
           ..add('petType', petType)
           ..add('petAge', petAge)
           ..add('petBio', petBio)
+          ..add('petId', petId)
+          ..add('petQr', petQr)
           ..add('reference', reference))
         .toString();
   }
@@ -230,6 +266,14 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
   String get petBio => _$this._petBio;
   set petBio(String petBio) => _$this._petBio = petBio;
 
+  String _petId;
+  String get petId => _$this._petId;
+  set petId(String petId) => _$this._petId = petId;
+
+  String _petQr;
+  String get petQr => _$this._petQr;
+  set petQr(String petQr) => _$this._petQr = petQr;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -248,6 +292,8 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
       _petType = $v.petType;
       _petAge = $v.petAge;
       _petBio = $v.petBio;
+      _petId = $v.petId;
+      _petQr = $v.petQr;
       _reference = $v.reference;
       _$v = null;
     }
@@ -275,6 +321,8 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
             petType: petType,
             petAge: petAge,
             petBio: petBio,
+            petId: petId,
+            petQr: petQr,
             reference: reference);
     replace(_$result);
     return _$result;
