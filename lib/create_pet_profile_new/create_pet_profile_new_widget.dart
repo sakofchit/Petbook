@@ -1,3 +1,5 @@
+import 'package:petbook/home_page/home_page_widget.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
@@ -294,7 +296,10 @@ class _CreatePetProfileNewWidgetState extends State<CreatePetProfileNewWidget> {
                           
                         );
                         await PetsRecord.collection.doc().set(dogsCreateData);
-                        Navigator.pop(context);
+                        await Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePageWidget(),
+                        ));
                       },
                       text: 'Add Pet',
                       options: FFButtonOptions(

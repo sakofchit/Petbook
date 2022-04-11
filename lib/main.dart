@@ -3,10 +3,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:petbook/create_pet_profile_new/create_pet_profile_new_widget.dart';
 import 'package:petbook/home_page/first_screen.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
+import 'home_page/menu.dart';
 import 'petbook/petbook_util.dart';
 import 'petbook/petbook_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,6 +75,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(
         brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color(0xffF5CAC3),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark, // 2
         ),
@@ -106,12 +111,52 @@ class NavBarPage extends StatefulWidget {
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPage = 'homePage';
 
+  MenuItem currentItem = MenuItems.home;
+
   @override
   void initState() {
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
   }
 
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: ZoomDrawer(
+    mainScreen: getScreen(),
+    borderRadius: 30,
+    showShadow: true,
+    //angle: -10,
+    slideWidth: MediaQuery.of(context).size.width * 0.8,
+    shadowLayer2Color: const Color(0xff84A59D),
+    shadowLayer1Color: const Color(0xff3A405A),
+    menuScreen: Builder(
+      builder: (context) => MenuPage(
+      currentItem: currentItem,
+      onSelectedItem: (item) {
+        setState(() {
+          currentItem = item;
+        });
+
+        ZoomDrawer.of(context).close();
+      }
+    ))),
+  );
+
+  Widget getScreen() {
+    switch(currentItem) {
+      case MenuItems.home:
+        return HomePageWidget();
+      case MenuItems.addPet:
+        return CreatePetProfileNewWidget();
+      case MenuItems.settings:
+        return ProfilePageWidget();
+      default: 
+        return HomePageWidget(); 
+    }
+  }
+
+
+  /*
   @override
   Widget build(BuildContext context) {
     final tabs = {
@@ -167,5 +212,5 @@ class _NavBarPageState extends State<NavBarPage> {
         ],
       ),
     );
-  }
+  }*/
 }
