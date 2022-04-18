@@ -21,10 +21,16 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   String get petName;
 
   @nullable
+  String get petBreed;
+
+  @nullable
   String get petType;
 
   @nullable
   String get petAge;
+
+  @nullable
+  String get petWeight;
 
   @nullable
   String get petBio;
@@ -36,16 +42,22 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   String get petQr;
 
   @nullable
+  String get petGender;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(PetsRecordBuilder builder) => builder
     ..petPhoto = ''
     ..petName = ''
-    ..petType = ''
+    ..petBreed = ''
     ..petAge = ''
+    ..petType = ''
     ..petBio = ''
     ..petId = ''
+    ..petWeight = ''
+    ..petGender = ''
     ..petQr = '';
 
   static CollectionReference get collection =>
@@ -76,9 +88,12 @@ Map<String, dynamic> createPetsRecordData({
   String petName,
   String petType,
   String petAge,
+  String petBreed,
   String petBio,
   String petId,
   String petQr,
+  String petWeight,
+  String petGender
 }) =>
     serializers.toFirestore(
         PetsRecord.serializer,
@@ -90,4 +105,7 @@ Map<String, dynamic> createPetsRecordData({
           ..petAge = petAge
           ..petBio = petBio
           ..petId = petId
+          ..petBreed = petBreed
+          ..petWeight = petWeight
+          ..petGender = petGender
           ..petQr = petQr));

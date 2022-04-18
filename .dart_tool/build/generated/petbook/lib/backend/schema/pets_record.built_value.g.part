@@ -37,6 +37,13 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.petBreed;
+    if (value != null) {
+      result
+        ..add('petBreed')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.petType;
     if (value != null) {
       result
@@ -48,6 +55,13 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
     if (value != null) {
       result
         ..add('petAge')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.petWeight;
+    if (value != null) {
+      result
+        ..add('petWeight')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -69,6 +83,13 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
     if (value != null) {
       result
         ..add('petQr')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.petGender;
+    if (value != null) {
+      result
+        ..add('petGender')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -108,12 +129,20 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
           result.petName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'petBreed':
+          result.petBreed = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'petType':
           result.petType = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'petAge':
           result.petAge = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'petWeight':
+          result.petWeight = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'petBio':
@@ -126,6 +155,10 @@ class _$PetsRecordSerializer implements StructuredSerializer<PetsRecord> {
           break;
         case 'petQr':
           result.petQr = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'petGender':
+          result.petGender = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'Document__Reference__Field':
@@ -149,15 +182,21 @@ class _$PetsRecord extends PetsRecord {
   @override
   final String petName;
   @override
+  final String petBreed;
+  @override
   final String petType;
   @override
   final String petAge;
+  @override
+  final String petWeight;
   @override
   final String petBio;
   @override
   final String petId;
   @override
   final String petQr;
+  @override
+  final String petGender;
   @override
   final DocumentReference<Object> reference;
 
@@ -168,11 +207,14 @@ class _$PetsRecord extends PetsRecord {
       {this.userAssociation,
       this.petPhoto,
       this.petName,
+      this.petBreed,
       this.petType,
       this.petAge,
+      this.petWeight,
       this.petBio,
       this.petId,
       this.petQr,
+      this.petGender,
       this.reference})
       : super._();
 
@@ -190,11 +232,14 @@ class _$PetsRecord extends PetsRecord {
         userAssociation == other.userAssociation &&
         petPhoto == other.petPhoto &&
         petName == other.petName &&
+        petBreed == other.petBreed &&
         petType == other.petType &&
         petAge == other.petAge &&
+        petWeight == other.petWeight &&
         petBio == other.petBio &&
         petId == other.petId &&
         petQr == other.petQr &&
+        petGender == other.petGender &&
         reference == other.reference;
   }
 
@@ -207,14 +252,22 @@ class _$PetsRecord extends PetsRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, userAssociation.hashCode),
-                                    petPhoto.hashCode),
-                                petName.hashCode),
-                            petType.hashCode),
-                        petAge.hashCode),
-                    petBio.hashCode),
-                petId.hashCode),
-            petQr.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc(0,
+                                                    userAssociation.hashCode),
+                                                petPhoto.hashCode),
+                                            petName.hashCode),
+                                        petBreed.hashCode),
+                                    petType.hashCode),
+                                petAge.hashCode),
+                            petWeight.hashCode),
+                        petBio.hashCode),
+                    petId.hashCode),
+                petQr.hashCode),
+            petGender.hashCode),
         reference.hashCode));
   }
 
@@ -224,11 +277,14 @@ class _$PetsRecord extends PetsRecord {
           ..add('userAssociation', userAssociation)
           ..add('petPhoto', petPhoto)
           ..add('petName', petName)
+          ..add('petBreed', petBreed)
           ..add('petType', petType)
           ..add('petAge', petAge)
+          ..add('petWeight', petWeight)
           ..add('petBio', petBio)
           ..add('petId', petId)
           ..add('petQr', petQr)
+          ..add('petGender', petGender)
           ..add('reference', reference))
         .toString();
   }
@@ -250,6 +306,10 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
   String get petName => _$this._petName;
   set petName(String petName) => _$this._petName = petName;
 
+  String _petBreed;
+  String get petBreed => _$this._petBreed;
+  set petBreed(String petBreed) => _$this._petBreed = petBreed;
+
   String _petType;
   String get petType => _$this._petType;
   set petType(String petType) => _$this._petType = petType;
@@ -257,6 +317,10 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
   String _petAge;
   String get petAge => _$this._petAge;
   set petAge(String petAge) => _$this._petAge = petAge;
+
+  String _petWeight;
+  String get petWeight => _$this._petWeight;
+  set petWeight(String petWeight) => _$this._petWeight = petWeight;
 
   String _petBio;
   String get petBio => _$this._petBio;
@@ -269,6 +333,10 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
   String _petQr;
   String get petQr => _$this._petQr;
   set petQr(String petQr) => _$this._petQr = petQr;
+
+  String _petGender;
+  String get petGender => _$this._petGender;
+  set petGender(String petGender) => _$this._petGender = petGender;
 
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
@@ -285,11 +353,14 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
       _userAssociation = $v.userAssociation;
       _petPhoto = $v.petPhoto;
       _petName = $v.petName;
+      _petBreed = $v.petBreed;
       _petType = $v.petType;
       _petAge = $v.petAge;
+      _petWeight = $v.petWeight;
       _petBio = $v.petBio;
       _petId = $v.petId;
       _petQr = $v.petQr;
+      _petGender = $v.petGender;
       _reference = $v.reference;
       _$v = null;
     }
@@ -314,11 +385,14 @@ class PetsRecordBuilder implements Builder<PetsRecord, PetsRecordBuilder> {
             userAssociation: userAssociation,
             petPhoto: petPhoto,
             petName: petName,
+            petBreed: petBreed,
             petType: petType,
             petAge: petAge,
+            petWeight: petWeight,
             petBio: petBio,
             petId: petId,
             petQr: petQr,
+            petGender: petGender,
             reference: reference);
     replace(_$result);
     return _$result;

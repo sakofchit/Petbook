@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>228922545435-d1m2a67g712a9vhvjtmk2qv7p4kqvus1.apps.googleusercontent.com</string>
+	<string>654519231791-afb9uft3idvd19s8le6ufpgdpi81k8td.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.228922545435-d1m2a67g712a9vhvjtmk2qv7p4kqvus1</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>228922545435-80o9h44121srjdrpcgv1mrp6rvk4upcj.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.654519231791-afb9uft3idvd19s8le6ufpgdpi81k8td</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDyEseMbXqFZMHrecbhg3z1uUVvqF0aeVQ</string>
+	<string>AIzaSyC6zc2KRQQ7Lt6b--FR2Lz68wNer0XShgo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>228922545435</string>
+	<string>654519231791</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.group1.petbook</string>
 	<key>PROJECT_ID</key>
-	<string>snout-371aa</string>
+	<string>another-petbook</string>
 	<key>STORAGE_BUCKET</key>
-	<string>snout-371aa.appspot.com</string>
+	<string>another-petbook.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:228922545435:ios:4337a18f414c70d1ba6fbe</string>
+	<string>1:654519231791:ios:91d5d16ef8ad997e772dda</string>
 </dict>
 </plist>

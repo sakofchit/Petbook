@@ -1,6 +1,7 @@
 import 'package:built_value/serializer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:petbook/backend/schema/pet_posts_record.dart';
 
 import '../petbook/petbook_util.dart';
 
@@ -15,7 +16,20 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/pets_record.dart';
 
+/// Functions to query PetPostsRecords (as a Stream and as a Future).
+Stream<List<PetPostsRecord>> queryPetPostsRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(PetPostsRecord.collection, PetPostsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
+Future<List<PetPostsRecord>> queryPetPostsRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(PetPostsRecord.collection, PetPostsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(

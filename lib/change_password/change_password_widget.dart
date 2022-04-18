@@ -41,7 +41,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         ),
         title: Text(
           'Change Password',
-          style: PetbookTheme.of(context).title2,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25),
         ),
         actions: [],
         centerTitle: false,

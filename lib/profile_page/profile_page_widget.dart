@@ -45,13 +45,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
           appBar: AppBar(
             backgroundColor: PetbookTheme.of(context).tertiaryColor,
             automaticallyImplyLeading: false,
-            title: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-              child: Text(
-                'Settings',
-                style: PetbookTheme.of(context).title2,
-              ),
-            ),
+            
           
             centerTitle: false,
             elevation: 0,
@@ -79,7 +73,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                               editSettingsUsersRecord.displayName,
                               'UserName',
                             ),
-                            style: PetbookTheme.of(context).title3,
+                            style: PetbookTheme.of(context).title1,
                           ),
                           Align(
                             alignment: AlignmentDirectional(-1, 0),

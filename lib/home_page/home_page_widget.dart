@@ -4,7 +4,6 @@ import 'package:petbook/edit_user_profile/edit_user_profile_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../create_pet_profile_new/create_pet_profile_new_widget.dart';
-import '../edit_pet_profile/edit_pet_profile_widget.dart';
 import '../petbook/petbook_icon_button.dart';
 import '../petbook/petbook_theme.dart';
 import '../petbook/petbook_toggle_icon.dart';
@@ -20,6 +19,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../profile_page/profile_page_widget.dart';
 import '../view_pet_profile/view_pet_profile.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 
 class HomePageWidget extends StatefulWidget {
@@ -58,34 +58,42 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           foregroundColor: Colors.black,
           backgroundColor: PetbookTheme.of(context).tertiaryColor,
           elevation: 0,
-          actionsIconTheme: IconThemeData(size: 50),
+          actionsIconTheme: IconThemeData(size: 80),
           actions: [
-            IconButton(
-              iconSize: 55,
-              icon: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 2,
-                  ),
-                ),
-                child: ClipRRect(
-                  child: Image.network(
-                    valueOrDefault<String>(
-                      profilePageUsersRecord.photoUrl,
-                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/sample-app-social-app-tx2kqp/assets/5lywt4ult0tj/flouffy-qEO5MpLyOks-unsplash.jpg',
-                    ),
-                    fit: BoxFit.fitWidth,
-                  ),
-                  borderRadius: BorderRadius.circular(20.0),
-                  )
-              ),
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const ProfilePageWidget()),
                 );
               },
+              child: Padding(
+              padding: EdgeInsetsDirectional
+                  .fromSTEB(0, 0, 10, 0),
+              child: Padding(
+                  padding:
+                      EdgeInsetsDirectional
+                          .fromSTEB(
+                              1, 1, 1, 1),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    clipBehavior:
+                        Clip.antiAlias,
+                    decoration:
+                        BoxDecoration(
+                      shape:
+                          BoxShape.circle,
+                    ),
+                    child:Image.network(
+                    valueOrDefault<String>(
+                      profilePageUsersRecord.photoUrl,
+                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/sample-app-social-app-tx2kqp/assets/5lywt4ult0tj/flouffy-qEO5MpLyOks-unsplash.jpg',
+                    ),
+                    )
+                  ),
+                ),
+              ),
             )
           ],
           leading: IconButton(
@@ -135,7 +143,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   SizedBox(
                     height: 55.0,
-                    child: CategorySelectionList(),
+                    //child: CategorySelectionList(),
                   ),
                 ],
               ),
@@ -236,26 +244,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         );
                       }
                       
-                      return Swiper(
-                        loop: false,
-                        itemBuilder: (context, index) {
-                        
-                        return Wrap(
-                          children: List.generate(
+                      return GridView.count(
+                        // Create a grid with 2 columns. If you change the scrollDirection to
+                        // horizontal, this produces 2 rows.
+                        crossAxisCount: 2,
+                        // Generate 100 widgets that display their index in the List.
+                        children: List.generate(
                                           columnPetsRecordList.length,
                                           (columnIndex) {
                                         final columnPetsRecord =
-                                            columnPetsRecordList[columnIndex];
-
-                          return GestureDetector(
+                                            columnPetsRecordList[columnIndex]; {
+                          return Center(
+                            child: GestureDetector(
                                 onTap: () async {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           ViewPetProfileWidget(
-                                        petProfile:
-                                            columnPetsRecord,
+                                            petProfile: columnPetsRecord,
                                       ),
                                     ),
                                   );
@@ -263,9 +270,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Container(
 
                             margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(30))
+                            ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
                               child: CachedNetworkImage(
                               imageUrl:
                                   valueOrDefault<String>(
@@ -276,23 +285,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             
                             ),
                             )
+                          )
                           );
-                          
-                        }));
-                      
-                        },
-                        itemCount: columnPetsRecordList.length,
-                        viewportFraction: 0.6,
-                        scale: 0.8,
+                        }}),
                       );
-                        
-                  
-                  
-                  
-                  
-                  
-                  
-                 
+                      
+                      
+                    
                     }
                   )
                 )]
@@ -321,7 +320,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     height: 100,
                   ),
                   
-                  
+                
                   
                 ],
               ),

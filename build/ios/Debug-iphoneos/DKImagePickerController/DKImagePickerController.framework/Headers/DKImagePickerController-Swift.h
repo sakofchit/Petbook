@@ -243,6 +243,21 @@ SWIFT_CLASS("_TtC23DKImagePickerController7DKAsset")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+@class NSURL;
+
+@interface DKAsset (SWIFT_EXTENSION(DKImagePickerController))
+/// The exported file will be placed in this location.
+/// All exported files can be automatically cleaned by the DKImageAssetDiskPurger when appropriate.
+@property (nonatomic, copy) NSURL * _Nullable localTemporaryPath;
+@property (nonatomic, copy) NSString * _Nullable fileName;
+/// Indicates the file’s size in bytes.
+@property (nonatomic) NSUInteger fileSize;
+/// If you export an asset whose data is not on the local device, and you have enabled downloading with the isNetworkAccessAllowed property, the progress indicates the progress of the download. A value of 0.0 indicates that the download has just started, and a value of 1.0 indicates the download is complete.
+@property (nonatomic) double progress;
+/// Describes the error that occurred if the export has failed or been cancelled.
+@property (nonatomic) NSError * _Nullable error;
+@end
+
 @class PHImageRequestOptions;
 @class UIImage;
 @class NSData;
@@ -260,21 +275,6 @@ SWIFT_CLASS("_TtC23DKImagePickerController7DKAsset")
 /// Fetch an AVAsset with a completeBlock and PHVideoRequestOptions.
 - (void)fetchAVAssetWithOptions:(PHVideoRequestOptions * _Nullable)options completeBlock:(void (^ _Nonnull)(AVAsset * _Nullable, NSDictionary * _Nullable))completeBlock;
 - (void)cancelRequests;
-@end
-
-@class NSURL;
-
-@interface DKAsset (SWIFT_EXTENSION(DKImagePickerController))
-/// The exported file will be placed in this location.
-/// All exported files can be automatically cleaned by the DKImageAssetDiskPurger when appropriate.
-@property (nonatomic, copy) NSURL * _Nullable localTemporaryPath;
-@property (nonatomic, copy) NSString * _Nullable fileName;
-/// Indicates the file’s size in bytes.
-@property (nonatomic) NSUInteger fileSize;
-/// If you export an asset whose data is not on the local device, and you have enabled downloading with the isNetworkAccessAllowed property, the progress indicates the progress of the download. A value of 0.0 indicates that the download has just started, and a value of 1.0 indicates the download is complete.
-@property (nonatomic) double progress;
-/// Describes the error that occurred if the export has failed or been cancelled.
-@property (nonatomic) NSError * _Nullable error;
 @end
 
 
@@ -367,6 +367,7 @@ SWIFT_CLASS("_TtC23DKImagePickerController20DKAssetGroupDetailVC")
 - (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)collectionView:(UICollectionView * _Nonnull)collectionView willDisplayCell:(UICollectionViewCell * _Nonnull)cell forItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didEndDisplayingCell:(UICollectionViewCell * _Nonnull)cell forItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (void)collectionView:(UICollectionView * _Nonnull)collectionView didDeselectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;

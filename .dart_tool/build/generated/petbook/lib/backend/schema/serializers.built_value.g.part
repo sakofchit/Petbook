@@ -3,6 +3,7 @@
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(PetPostsRecord.serializer)
       ..add(PetsRecord.serializer)
       ..add(UsersRecord.serializer))
     .build();
