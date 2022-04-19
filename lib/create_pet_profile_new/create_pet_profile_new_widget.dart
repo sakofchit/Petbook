@@ -127,7 +127,13 @@ class _CreatePetProfileNewWidgetState extends State<CreatePetProfileNewWidget> {
                 
               );
               await PetsRecord.collection.doc().set(petsCreateData);
-              await Navigator.of(context).pop;
+              final snackbar = SnackBar(
+                content: Text(petNameController.text + " has been added!" )
+              );
+
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+              ZoomDrawer.of(context).toggle();
+
               /*await Navigator.push(context,
               MaterialPageRoute(
                 builder: (context) => HomePageWidget(),

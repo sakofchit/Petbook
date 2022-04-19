@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:petbook/auth/auth_util.dart';
 import 'package:petbook/backend/backend.dart';
 import 'package:petbook/create_timeline_post/create_timeline_post.dart';
+import 'package:petbook/home_page/home_page_widget.dart';
 import 'package:petbook/petbook/petbook_theme.dart';
 import 'package:petbook/petbook/petbook_util.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -246,6 +247,59 @@ class _ViewPetProfileWidgetState extends State<ViewPetProfileWidget> {
                                 child: Icon(
                                   Icons.qr_code_scanner_rounded,
                                   size: 28,
+                                )
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showCupertinoDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: Text("Delete Profile"),
+                                        content: Text("Are you sure you want to delete this profile?"),
+                                        actions: [
+                                          CupertinoDialogAction(
+                                              child: Text("Delete"),
+                                              onPressed: () async
+                                              {
+                                                widget.petProfile.reference.delete();
+                                                final snackbar = SnackBar(
+                                                  content: const Text('Successfully Deleted Profile')
+                                                );
+
+                                                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                                Navigator.pop(context);
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.leftToRight,
+                                                    duration: Duration(milliseconds: 250),
+                                                    reverseDuration: Duration(milliseconds: 250),
+                                                    child: HomePageWidget(),
+                                                  ),
+                                                );
+                                              }
+                    
+                                          ),
+                                          CupertinoDialogAction(
+                                            child: Text("Cancel"),
+                                            onPressed: (){
+                                              Navigator.of(context).pop();
+                                            }
+                                            ,
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                  size: 28,
+                                  color: Color.fromARGB(255, 219, 108, 108)
                                 )
                               ),
                               SizedBox(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:petbook/edit_user_profile/edit_user_profile_widget.dart';
 
@@ -23,7 +24,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+  const HomePageWidget({Key key, this.petProfile}) : super(key: key);
+
+  final PetsRecord petProfile;
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
@@ -109,6 +112,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: Container(
         color: PetbookTheme.of(context).tertiaryColor,
         width: double.infinity,
+        height: double.infinity,
         child: SingleChildScrollView(
           child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,17 +145,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   const SizedBox(
                     height: 22,
                   ),
-                  SizedBox(
-                    height: 55.0,
-                    //child: CategorySelectionList(),
-                  ),
+                  
                 ],
               ),
             ),
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
-                Container(
+                /*Container(
                   width: size.width,
                   height: size.height / 2,
                   //color: const Color(0XFFDCF2F3),
@@ -159,7 +160,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 Container(
                   width: size.width,
                   height: size.height / 3,
-                  color: const Color(0XFFF6BD60),
+                  color: Color.fromRGBO(246, 189, 96, 1),
                 ),
                 Positioned(
                   top: 0,
@@ -182,9 +183,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                ),
+                ),*/
                 SizedBox(
-                  height: size.height / 3.1,
+                  height: size.height,
                   child: StreamBuilder<List<PetsRecord>>(
                     stream: queryPetsRecord(
                       queryBuilder: (PetsRecord) =>
@@ -212,12 +213,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         return Column(
                             children: [
                               Container(
-                            
-                                width: MediaQuery.of(context)
-                                        .size
-                                        .width *
-                                    0.6,
+                                alignment: Alignment.center,
+                                height: 150,
                                 child: GestureDetector(
+                                  
                                   onTap: () async {
                                     await Navigator.push(
                                       context,
@@ -249,13 +248,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         // horizontal, this produces 2 rows.
                         crossAxisCount: 2,
                         // Generate 100 widgets that display their index in the List.
-                        children: List.generate(
+                        children:List.generate(
                                           columnPetsRecordList.length,
                                           (columnIndex) {
                                         final columnPetsRecord =
                                             columnPetsRecordList[columnIndex]; {
+                         
                           return Center(
                             child: GestureDetector(
+                                
                                 onTap: () async {
                                   await Navigator.push(
                                     context,
@@ -267,27 +268,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                   );
                                 },
-                            child: Container(
-
-                            margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(30))
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(30)),
-                              child: CachedNetworkImage(
-                              imageUrl:
-                                  valueOrDefault<String>(
-                                columnPetsRecord.petPhoto,
-                                'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
-                              )),
-                              
-                            
-                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  constraints: BoxConstraints(maxHeight: 150, maxWidth: 150),
+                                  margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(30))
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                                    child: CachedNetworkImage(
+                                    imageUrl:
+                                        valueOrDefault<String>(
+                                      columnPetsRecord.petPhoto,
+                                      'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
+                                    )),
+                                    
+                                  
+                                  ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(columnPetsRecord.petName, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), )
+                                
+                              ] 
                             )
+                            
                           )
                           );
                         }}),
+                   
                       );
                       
                       
@@ -297,7 +307,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 )]
             ),
             
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -324,7 +334,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   
                 ],
               ),
-            ),
+            ),*/
           ],
           )
         ),
@@ -333,32 +343,5 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       },
     );
   }
-}
-
-
-class CategorySelectionList extends StatelessWidget {
-  CategorySelectionList({
-    Key key,
-  }) : super(key: key);
-  List<String> categories = ['Dogs', 'Cats', 'Rabbits', 'Birds', 'Reptiles'];
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      scrollDirection: Axis.horizontal,
-      itemCount: categories.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          margin: EdgeInsets.only(right: 25.0),
-          child: Text(
-            categories[index],
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 22,
-            ),
-          ),
-        );
-      },
-    );
-  }
+  
 }
