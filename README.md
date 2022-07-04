@@ -1,8 +1,16 @@
 # petbook
 
-Mobile app extension for Petbook built with Flutter.
+This was from our group's final project in POOSD (COP4331) @ UCF
 
-## Getting Started
+The concept of the app was to allow pet owners to create pet profiles that generate QR dog-tags as a substitute for normal dog tags/microchipping. The tags can be scanned by anyone which will take you to a page containing more information about the dog, its owner, etc. (stuff you probably wouldn't be able to fit on a normal dog tag)
+
+
+Screenshots can be found [here](https://github.com/sakofchit/Petbook/tree/main/screenshots): 
+
+
+
+## Getting Started!
+
 
 Petbook projects are built to run on the Flutter _stable_ release.
 
